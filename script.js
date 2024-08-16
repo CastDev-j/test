@@ -2,6 +2,7 @@ const startTime = 7;
 const endTime = 19;
 const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 let savedTimes = [];
+let userColors = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.querySelector('#horario tbody');
@@ -42,22 +43,21 @@ function toggleSelection(cell, hour, day) {
 }
 
 function saveSelections() {
-    const hoursOcupadasDiv = document.getElementById('horas-ocupadas');
-    hoursOcupadasDiv.innerHTML = '';
+    const nombre = document.getElementById('nombre').value;
+    const color = document.getElementById('color').value;
+    if (!nombre || !color) {
+        alert('Nombre y color son obligatorios.');
+        return;
+    }
     
-    selectedTimes.forEach(time => {
-        const div = document.createElement('div');
-        div.textContent = `${time.day} ${time.hour}:00 - ${time.hour + 1}:00`;
-        hoursOcupadasDiv.appendChild(div);
-    });
-
-    // Preparar los datos para enviar a MockAPI
+    // Preparar los datos para enviar a la API
     const data = {
-        usuario: "Usuario1",  // Cambia esto por el nombre del usuario o algún identificador si lo tienes
+        nombre,  // Nombre del usuario
+        color,   // Color del usuario
         horasOcupadas: selectedTimes
     };
 
-    // Enviar datos a MockAPI
+    // Enviar datos a la API
     fetch('https://66bfb5ab42533c403146e364.mockapi.io/horarios', {
         method: 'POST',
         headers: {
@@ -79,8 +79,14 @@ function fetchSchedules() {
     fetch('https://66bfb5ab42533c403146e364.mockapi.io/horarios')
     .then(response => response.json())
     .then(data => {
-        savedTimes = data.flatMap(item => item.horasOcupadas);
+        savedTimes = data.flatMap(item => item.horasOcupadas.map(t => ({
+            ...t,
+            color: item.color,
+            nombre: item.nombre
+        })));
+        userColors = data.map(item => ({ nombre: item.nombre, color: item.color }));
         generateSavedScheduleTable();
+        displayUserColors();
     })
     .catch(error => {
         console.error('Error al obtener los horarios:', error);
@@ -121,9 +127,10 @@ function generateSavedScheduleTable() {
 
         days.forEach(day => {
             const cell = document.createElement('td');
-            const isSelected = savedTimes.some(t => t.hour === hour && t.day === day);
-            if (isSelected) {
-                cell.classList.add('selected');
+            const color = getCellColor(hour, day);
+            if (color) {
+                cell.style.backgroundColor = color;
+                cell.style.color = '#fff'; // Color de texto blanco para mejor contraste
             }
             row.appendChild(cell);
         });
@@ -133,4 +140,24 @@ function generateSavedScheduleTable() {
 
     table.appendChild(tbody);
     savedTableContainer.appendChild(table);
+}
+
+function getCellColor(hour, day) {
+    const entry = savedTimes.find(t => t.hour === hour && t.day === day);
+    return entry ? entry.color : null;
+}
+
+function displayUserColors() {
+    const coloresDisponiblesDiv = document.getElementById('colores-disponibles');
+    coloresDisponiblesDiv.innerHTML = '';
+
+    userColors.forEach(user => {
+        const colorDiv = document.createElement('div');
+        colorDiv.textContent = user.nombre;
+        colorDiv.style.backgroundColor = user.color;
+        colorDiv.style.padding = '5px';
+        colorDiv.style.marginBottom = '5px';
+        colorDiv.style.color = '#fff';
+        coloresDisponiblesDiv.appendChild(colorDiv);
+    });
 }

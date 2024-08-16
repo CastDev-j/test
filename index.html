@@ -8,6 +8,16 @@
 </head>
 <body>
     <h1>Selecciona tus Horas Ocupadas</h1>
+    <form id="formulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+        
+        <label for="color">Color:</label>
+        <input type="color" id="color" value="#ff0000" required>
+
+        <button type="button" id="guardar">Guardar Horarios</button>
+    </form>
+    
     <table id="horario">
         <thead>
             <tr>
@@ -24,10 +34,13 @@
             <!-- Se genera la tabla dinámicamente con JavaScript -->
         </tbody>
     </table>
-    <button id="guardar">Guardar Horarios</button>
-    
-    <h2>Horas Ocupadas</h2>
 
+    <h2>Colores Disponibles</h2>
+    <div id="colores-disponibles">
+        <!-- Aquí se generarán los colores disponibles -->
+    </div>
+
+    <h2>Horas Ocupadas</h2>
     <div id="tabla-horarios-guardados">
         <!-- Aquí se generará la tabla de horarios guardados -->
     </div>

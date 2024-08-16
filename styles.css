@@ -1,11 +1,56 @@
+/* Estilos generales del cuerpo */
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #f9f9f9;
 }
 
+/* Estilos para el formulario */
+#formulario {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulario label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#formulario input[type="text"],
+#formulario input[type="color"] {
+    width: calc(100% - 22px); /* Ajustar el ancho para los padding y bordes */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#formulario button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #00796b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#formulario button:hover {
+    background-color: #004d40;
+}
+
+/* Estilos para la tabla de horarios */
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 th, td {
@@ -28,15 +73,31 @@ td.selected {
     color: white;
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #00796b;
-    color: white;
-    border: none;
-    cursor: pointer;
+/* Estilos para la sección de colores disponibles */
+#colores-disponibles {
+    max-width: 600px;
+    margin: 20px auto;
 }
 
-button:hover {
-    background-color: #004d40;
+#colores-disponibles div {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Estilos para la sección de horas ocupadas */
+#horas-ocupadas {
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+#horas-ocupadas div {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background-color: #e7e7e7; /* Fondo para las horas ocupadas */
+    color: #333;
 }
