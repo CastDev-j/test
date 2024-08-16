@@ -1,3 +1,10 @@
+/* Estilos generales para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* Estilos generales del cuerpo */
 body {
     font-family: Arial, sans-serif;
@@ -23,7 +30,8 @@ body {
 
 #formulario input[type="text"],
 #formulario input[type="color"] {
-    width: calc(100% - 22px); /* Ajustar el ancho para los padding y bordes */
+    width: calc(100% - 22px);
+    /* Ajustar el ancho para padding y bordes */
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -53,7 +61,8 @@ table {
     margin-top: 20px;
 }
 
-th, td {
+th,
+td {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
@@ -98,10 +107,10 @@ td.selected {
     padding: 10px;
     margin-bottom: 5px;
     border-radius: 4px;
-    background-color: #e7e7e7; /* Fondo para las horas ocupadas */
+    background-color: #e7e7e7;
+    /* Fondo para las horas ocupadas */
     color: #333;
 }
-
 
 /* Estilo para el contenedor del color picker */
 .color-picker-container {
@@ -118,19 +127,25 @@ td.selected {
 
 /* Estilo para el input tipo color */
 input[type="color"] {
-
     border: none;
-    width: 40px; /* Ajustar el tamaño del selector de color */
-    height: 40px; /* Ajustar el tamaño del selector de color */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el selector */
-    border-radius: 5px; /* Añadir bordes redondeados */
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2); /* Añadir sombra para destacar el selector */
-    outline: none; /* Eliminar el borde de enfoque predeterminado */
+    width: 40px;
+    /* Ajustar el tamaño del selector de color */
+    height: 40px;
+    /* Ajustar el tamaño del selector de color */
+    cursor: pointer;
+    /* Cambiar el cursor al pasar sobre el selector */
+    border-radius: 5px;
+    /* Añadir bordes redondeados */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+    /* Añadir sombra para destacar el selector */
+    outline: none;
+    /* Eliminar el borde de enfoque predeterminado */
 }
 
 /* Estilo para el selector de color cuando está enfocado */
 input[type="color"]:focus {
-    box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.3); /* Resaltar el borde cuando está enfocado */
+    box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.3);
+    /* Resaltar el borde cuando está enfocado */
 }
 
 /* Estilo adicional para un mensaje o descripción */
@@ -138,4 +153,31 @@ input[type="color"]:focus {
     font-size: 14px;
     color: #666;
     margin-top: 5px;
+}
+
+#tabla-horarios-guardados {
+
+    /* Estilo para las celdas de la tabla con múltiples colores */
+    td {
+        position: relative;
+        /* Permitir posicionamiento absoluto de los colores */
+        padding: 0;
+        border: 1px solid #ddd;
+        /* Añadir un borde ligero para visualizar la celda */
+    }
+
+    /* Estilo para cada bloque de color dentro de una celda */
+    .color-block {
+        margin-top: -9px;
+        position: absolute;
+        height: 100%;
+        border: 1px solid transparent;
+        /* Bordes invisibles entre bloques */
+    }
+
+    /* Añadir un margen entre los bloques de color */
+    .color-block:not(:last-child) {
+        border-right: 1px solid #ddd;
+    }
+
 }

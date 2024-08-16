@@ -127,11 +127,20 @@ function generateSavedScheduleTable() {
 
         days.forEach(day => {
             const cell = document.createElement('td');
-            const color = getCellColor(hour, day);
-            if (color) {
-                cell.style.backgroundColor = color;
-                cell.style.color = '#fff'; // Color de texto blanco para mejor contraste
-            }
+            const entries = savedTimes.filter(t => t.hour === hour && t.day === day);
+
+            let offset = 0;
+            entries.forEach(entry => {
+                const colorBlock = document.createElement('div');
+                colorBlock.classList.add('color-block');
+                colorBlock.style.backgroundColor = entry.color;
+                colorBlock.style.width = `${100 / entries.length}%`; // Dividir el espacio proporcionalmente
+                colorBlock.style.left = `${offset}%`;
+                offset += 100 / entries.length;
+
+                cell.appendChild(colorBlock);
+            });
+
             row.appendChild(cell);
         });
 
@@ -140,11 +149,6 @@ function generateSavedScheduleTable() {
 
     table.appendChild(tbody);
     savedTableContainer.appendChild(table);
-}
-
-function getCellColor(hour, day) {
-    const entry = savedTimes.find(t => t.hour === hour && t.day === day);
-    return entry ? entry.color : null;
 }
 
 function displayUserColors() {
