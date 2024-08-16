@@ -101,3 +101,41 @@ td.selected {
     background-color: #e7e7e7; /* Fondo para las horas ocupadas */
     color: #333;
 }
+
+
+/* Estilo para el contenedor del color picker */
+.color-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilo para el label del color picker */
+.color-picker-container label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Estilo para el input tipo color */
+input[type="color"] {
+
+    border: none;
+    width: 40px; /* Ajustar el tamaño del selector de color */
+    height: 40px; /* Ajustar el tamaño del selector de color */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el selector */
+    border-radius: 5px; /* Añadir bordes redondeados */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2); /* Añadir sombra para destacar el selector */
+    outline: none; /* Eliminar el borde de enfoque predeterminado */
+}
+
+/* Estilo para el selector de color cuando está enfocado */
+input[type="color"]:focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 255, 0.3); /* Resaltar el borde cuando está enfocado */
+}
+
+/* Estilo adicional para un mensaje o descripción */
+.color-picker-description {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
